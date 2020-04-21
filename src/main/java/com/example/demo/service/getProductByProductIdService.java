@@ -21,8 +21,8 @@ public class getProductByProductIdService {
             logger.warn("getProductByProductId方法参数错误");
             return null;
         }
-
         Product product = getProductByProductIdMapper.getProductByProductId(product_id);
+
 
         return product;
     }

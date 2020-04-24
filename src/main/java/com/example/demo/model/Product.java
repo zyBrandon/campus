@@ -12,9 +12,10 @@ public class Product {
     public Date product_release_time;
     public Date product_end_time;
     public String product_image_url;
+    public String product_status;
 
     public Product(int product_id,String product_sell_user,String product_name,String product_type,String product_describe,int product_price,
-                   Date product_release_time,Date product_end_time,String product_image_url){
+                   Date product_release_time,Date product_end_time,String product_image_url,String product_status){
         this.product_id = product_id;
         this.product_sell_user = product_sell_user;
         this.product_name = product_name;
@@ -24,10 +25,15 @@ public class Product {
         this.product_release_time = product_release_time;
         this.product_end_time = product_end_time;
         this.product_image_url = product_image_url;
+        this.product_status = product_status;
     }
 
     public Product(){
 
+    }
+
+    public String getProduct_status() {
+        return product_status;
     }
 
     public int getProduct_id() {
@@ -100,5 +106,9 @@ public class Product {
 
     public void setProduct_image_url(String product_image_url) {
         this.product_image_url = product_image_url;
+    }
+
+    public void setProduct_status(String product_status) {
+        this.product_status = product_status;
     }
 }

@@ -3,16 +3,26 @@ package com.example.demo.model;
 public class Address {
     public int address_id;
     public String address;
+    public String name;
     public String user_name;
     public String latitude;
     public String longtitude;
 
-    public Address(int address_id,String address,String user_name,String latitude,String longtitude){
+    public Address(){
+
+    }
+
+    public Address(int address_id,String address,String user_name,String latitude,String longtitude,String name){
         this.address = address;
         this.address_id = address_id;
         this.user_name = user_name;
         this.latitude = latitude;
         this.longtitude = longtitude;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getAddress_id() {
@@ -53,5 +63,9 @@ public class Address {
 
     public void setUser_name(String user_name) {
         this.user_name = user_name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

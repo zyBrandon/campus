@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Product;
+import com.example.demo.service.addVisitService;
 import com.example.demo.service.getProductByProductIdService;
 import com.example.demo.util.ApiResult;
 import com.example.demo.util.StringToInt;
@@ -21,6 +22,9 @@ public class GetDetailByProductIdController {
 
     @Autowired
     private getProductByProductIdService getProductByProductId;
+
+    @Autowired
+    private addVisitService addVisitService;
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -43,6 +47,12 @@ public class GetDetailByProductIdController {
 
         res.put(productDetail,product);
 
+        //添加个人查看记录信息，为打点用
+        boolean addVisit = addVisitService.addVisitService(product_id,nickName);
+        if (addVisit == false){
+            logger.warn("getdetail添加打点失败");
+            return ApiResult.success(20001,"添加推荐打点失败","");
+        }
 
         return ApiResult.success(200,"success",res);
 

@@ -17,8 +17,8 @@ public class getVisitMostService {
     @Autowired
     public getVisitMostMapper getVisitMostMapper;
 
-    public ArrayList<Product_Visit> getVisitMost(int hotcount){
-        ArrayList<Product_Visit> res = new ArrayList<Product_Visit>();
+    public ArrayList<Integer> getVisitMost(int hotcount){
+        ArrayList<Integer> res = new ArrayList<Integer>();
         if (getParams(hotcount) == false){
             logger.warn("getVisitMost方法hotcount错误");
             return res;

@@ -3,10 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.Advertising;
 import com.example.demo.model.Product;
 import com.example.demo.model.Product_Visit;
-import com.example.demo.service.getAdvertisingService;
-import com.example.demo.service.getNewProductService;
-import com.example.demo.service.getProductByProductIdService;
-import com.example.demo.service.getVisitMostService;
+import com.example.demo.service.*;
 import com.example.demo.util.ApiResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +36,9 @@ public class HomeController {
     @Autowired
     private getNewProductService getNewProduct;
 
+    @Autowired
+    private addLogService addLogService;
+
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(value = "/home",method = RequestMethod.GET)
@@ -67,7 +67,7 @@ public class HomeController {
         //获取3条自己观看最多种类的类别的数据
 
         //策略为拉5条打点次数最高的商品 再加25条数据
-        ArrayList<Product_Visit> topVisits = new ArrayList<Product_Visit>();
+        ArrayList<Integer> topVisits = new ArrayList<Integer>();
         topVisits = getVisitMost.getVisitMost(hotcount);
         if (topVisits == null){
             logger.warn("home接口getVisitMost方法返回为空");
@@ -75,8 +75,8 @@ public class HomeController {
         }
         //拿到数据之后 循环查找对应的商品表信息
         if (topVisits != null){
-            for (Product_Visit topVisit:topVisits) {
-                int product_id = topVisit.getProduct_id();
+            for (Integer topVisit:topVisits) {
+                int product_id = topVisit;
                 Product product = getProductByProductId.getProductByProductId(product_id);
                 if (product == null){
                     logger.warn("home接口getProductByProductId返回为空");
@@ -85,6 +85,10 @@ public class HomeController {
                 productRes.add(product);
             }
         }
+        for (int i = 0;i < productRes.size();i++){
+            logger.warn(productRes.get(i).getProduct_name());
+        }
+
 
         //获取最新的25条数据
         ArrayList<Product> newProducts = getNewProduct.getNewProduct(newNum);
@@ -105,6 +109,13 @@ public class HomeController {
                     productRes.remove(i);
                 }
             }
+        }
+
+        //增加打点信息
+        boolean addLogRes = addLogService.addLog(nickName);
+        if (addLogRes == false){
+            logger.warn("添加打点数据失败");
+            return ApiResult.success(20001,"添加打点数据失败","");
         }
 
         //放入结果集中

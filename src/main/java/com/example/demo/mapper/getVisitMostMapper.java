@@ -9,6 +9,6 @@ import java.util.ArrayList;
 
 @Mapper
 public interface getVisitMostMapper {
-    @Select("select * from product_visit_tbl order by visit_count limit #{hotcount}")
-    ArrayList<Product_Visit> getVisitMost(@Param("hotcount") int hotcount);
+    @Select("SELECT DISTINCT product_id FROM product_visit_tbl WHERE product_id IN(SELECT product_id AS NUM  FROM product_visit_tbl GROUP BY product_id ORDER BY NUM DESC) limit #{hotcount}")
+    ArrayList<Integer> getVisitMost(@Param("hotcount") int hotcount);
 }

@@ -6,18 +6,16 @@ public class Product_Visit {
     public int product_visit_id;
     public int product_id;
     public Date visit_time;
-    public int visit_count;
     public String visit_user;
 
     public Product_Visit(){
 
     }
 
-    public Product_Visit(int product_visit_id,int product_id,int visit_count,Date visit_time,String visit_user){
+    public Product_Visit(int product_visit_id,int product_id,Date visit_time,String visit_user){
         this.product_visit_id = product_visit_id;
         this.product_id = product_id;
         this.visit_time = visit_time;
-        this.visit_count = visit_count;
         this.visit_user = visit_user;
     }
 
@@ -29,9 +27,7 @@ public class Product_Visit {
         this.product_visit_id = product_visit_id;
     }
 
-    public void setVisit_count(int visit_count) {
-        this.visit_count = visit_count;
-    }
+
 
     public void setVisit_time(Date visit_time) {
         this.visit_time = visit_time;
@@ -45,9 +41,7 @@ public class Product_Visit {
         return product_visit_id;
     }
 
-    public int getVisit_count() {
-        return visit_count;
-    }
+
 
     public int getProduct_id() {
         return product_id;

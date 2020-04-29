@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.service.addOrderService;
+import com.example.demo.service.updateProductStatusByProductIdService;
 import com.example.demo.util.ApiResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +25,9 @@ public class AddOrderController {
     @Autowired
     private addOrderService addOrderService;
 
+    @Autowired
+    private updateProductStatusByProductIdService updateProductStatusByProductIdService;
+
     @RequestMapping(value = "/addorder",method = RequestMethod.GET)
     public ApiResult addorder(@RequestParam("product_buy_username") String product_buy_username,@RequestParam("product_id") int product_id){
         HashMap res = new HashMap();
@@ -42,6 +46,11 @@ public class AddOrderController {
         }
 
         //todo商品的字段改变product_status
+        boolean updateRes = updateProductStatusByProductIdService.updateProductStatusByProductId(product_id);
+        if (updateRes == false){
+            logger.warn("addorder更改状态值异常");
+            return ApiResult.success(20001,"更改状态值异常","");
+        }
 
         res.put(pop,popContent);
 

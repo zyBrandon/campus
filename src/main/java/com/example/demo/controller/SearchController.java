@@ -40,6 +40,9 @@ public class SearchController {
             logger.warn("search接口获取getProductByType返回为空");
             return ApiResult.success(20001,"获取数据为空","");
         }
+        //todo 根据产品名搜索
+
+
 
         res.put(userName,nickName);
         res.put(productList,productRes);

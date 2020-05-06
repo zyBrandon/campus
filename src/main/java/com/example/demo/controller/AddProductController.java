@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.service.addAddressService;
+import com.example.demo.service.addPointService;
 import com.example.demo.service.addProductService;
 import com.example.demo.util.ApiResult;
 import org.slf4j.Logger;
@@ -24,6 +25,9 @@ public class AddProductController {
 
     @Autowired
     private addAddressService addAddressService;
+
+    @Autowired
+    private addPointService addPointService;
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -51,6 +55,13 @@ public class AddProductController {
         if (addAddressRes == false){
             logger.warn("addAddress方法添加数据失败");
             return ApiResult.success(20001,"添加数据失败","");
+        }
+
+        //增加用户积分
+        boolean addPointRes = addPointService.addPoint(product_sell_user);
+        if (addPointRes == false){
+            logger.warn("添加积分失败");
+            return ApiResult.success(20001,"添加积分失败","");
         }
 
         res.put(pop,popContent);

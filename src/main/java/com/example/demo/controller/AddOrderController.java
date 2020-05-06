@@ -52,6 +52,8 @@ public class AddOrderController {
             return ApiResult.success(20001,"更改状态值异常","");
         }
 
+        //todo 购买自己的商品
+
         res.put(pop,popContent);
 
         return ApiResult.success(200,"success",res);

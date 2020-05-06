@@ -1,17 +1,19 @@
 package com.example.demo.model;
 
+import java.util.Date;
+
 public class Feedback {
     public int feedback_id;
     public String feedback_user;
     public String feedback_title;
     public String feedback_content;
-    public String feedback_time;
+    public Date feedback_time;
 
     public Feedback(){
 
     }
 
-    public Feedback(int feedback_id,String feedback_user,String feedback_title,String feedback_content,String feedback_time){
+    public Feedback(int feedback_id,String feedback_user,String feedback_title,String feedback_content,Date feedback_time){
         this.feedback_content = feedback_content;
         this.feedback_id = feedback_id;
         this.feedback_user = feedback_user;
@@ -27,7 +29,7 @@ public class Feedback {
         return feedback_content;
     }
 
-    public String getFeedback_time() {
+    public Date getFeedback_time() {
         return feedback_time;
     }
 
@@ -47,7 +49,7 @@ public class Feedback {
         this.feedback_id = feedback_id;
     }
 
-    public void setFeedback_time(String feedback_time) {
+    public void setFeedback_time(Date feedback_time) {
         this.feedback_time = feedback_time;
     }
 

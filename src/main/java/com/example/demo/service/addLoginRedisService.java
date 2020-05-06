@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class addLoginRedisService {
 
     private final static String land = "land";
-    private final static long time = 2000;
+    private final static long time = 259200;//3天
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 

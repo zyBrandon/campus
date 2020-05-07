@@ -85,9 +85,9 @@ public class HomeController {
                 productRes.add(product);
             }
         }
-        for (int i = 0;i < productRes.size();i++){
-            logger.warn(productRes.get(i).getProduct_name());
-        }
+        /*for (int i = 0;i < productRes.size();i++){
+            //logger.warn(productRes.get(i).getProduct_name());
+        }*/
 
 
         //获取最新的25条数据

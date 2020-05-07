@@ -19,7 +19,7 @@ public class addLoginRedisService {
 
     public boolean addLoginRedis(String nickName){
         //入redis
-        boolean res = redisUtil.set(nickName,land,time);
+        boolean res = redisUtil.set(nickName+land,land,time);
         if (res == true){
             return true;
         } else {

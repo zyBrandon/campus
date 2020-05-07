@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Product;
+import com.example.demo.service.getProductByNameService;
 import com.example.demo.service.getProductByTypeService;
 import com.example.demo.util.ApiResult;
 import org.slf4j.Logger;
@@ -23,6 +24,9 @@ public class SearchController {
     @Autowired
     private getProductByTypeService getProductByType;
 
+    @Autowired
+    private getProductByNameService getProductByNameService;
+
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(value = "/search",method = RequestMethod.GET)
@@ -41,7 +45,13 @@ public class SearchController {
             return ApiResult.success(20001,"获取数据为空","");
         }
         //todo 根据产品名搜索
-
+        ArrayList<Product> products = new ArrayList<>();
+        products = getProductByNameService.getProductByName(type);
+        if (products != null){
+            for (Product product:products) {
+                productRes.add(product);
+            }
+        }
 
 
         res.put(userName,nickName);

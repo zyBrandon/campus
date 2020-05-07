@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.service.addLoginRedisService;
 import com.example.demo.service.getAdminLoginService;
+import com.example.demo.service.getAdminRightService;
 import com.example.demo.util.ApiResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,12 +20,18 @@ public class AdminLoginController {
     public static final String pop = "pop";
     public static final String popLogin = "登录成功";
     public static final String popLoginFail = "登录失败";
+    public static final String primary = "primary";
+    public static final String senior = "senior";
+    public static final String Right = "right";
 
     @Autowired
     private getAdminLoginService getAdminLoginService;
 
     @Autowired
     private addLoginRedisService addLoginRedisService;
+
+    @Autowired
+    private getAdminRightService getAdminRightService;
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -49,6 +56,19 @@ public class AdminLoginController {
         if (addRedisRes == false){
             logger.warn("添加redis失败");
             return ApiResult.success(20001,"添加redis失败","");
+        }
+
+        //todo 获取管理员权限
+        String adminRight = getAdminRightService.getAdminRight(admin_name);
+        if (adminRight == null){
+            logger.warn("获取权限失败");
+            return ApiResult.success(20001,"获取权限失败","");
+        }
+        if (adminRight.equals(primary)){
+            res.put(Right,primary);
+        }
+        if (adminRight.equals(senior)){
+            res.put(Right,senior);
         }
 
         res.put(pop,popLogin);

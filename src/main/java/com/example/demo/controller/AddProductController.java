@@ -63,6 +63,8 @@ public class AddProductController {
             logger.warn("添加积分失败");
             return ApiResult.success(20001,"添加积分失败","");
         }
+        //todo 用户资料入库
+
 
         res.put(pop,popContent);
         return ApiResult.success(200,"success",res);

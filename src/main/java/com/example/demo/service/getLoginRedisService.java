@@ -22,7 +22,7 @@ public class getLoginRedisService {
             return false;
         }
 
-        String res = (String)redisUtil.get(nickName);
+        String res = (String)redisUtil.get(nickName+land);
         logger.warn("----------redis获取到的数值为"+res);
         if (res != null){
             if (res.equals(land)){

@@ -113,6 +113,11 @@
             <groupId>org.xmlunit</groupId>
             <artifactId>xmlunit-core</artifactId>
         </dependency>
+        <!--加入websocker-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
 
 
     </dependencies>
